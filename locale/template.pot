@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 07:11+0200\n"
+"POT-Creation-Date: 2017-08-05 11:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,11 @@ msgid "Select Player Skin:"
 msgstr ""
 
 #: init.lua
-msgid "Name: "
+msgid "Name: @1"
 msgstr ""
 
 #: init.lua
-msgid "Author: "
+msgid "Author: @1"
 msgstr ""
 
 #: init.lua
@@ -34,7 +34,7 @@ msgid "Admin command to set player skin"
 msgstr ""
 
 #: init.lua
-msgid "'s skin set to"
+msgid "@1's skin set to"
 msgstr ""
 
 #: init.lua

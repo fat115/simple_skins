@@ -1,4 +1,3 @@
-
 -- Simple Skins mod for minetest (26th July 2017)
 -- Adds a simple skin selector to the inventory, using inventory_plus
 -- or by using the /skin command to bring up selection list.
@@ -13,6 +12,7 @@ skins.inv = minetest.get_modpath("inventory_plus")
 -- Load support for intllib.
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
+local F = function(...) return minetest.formspec_escape(S(...)) end
 
 -- load skin list
 skins.list = {}
@@ -87,7 +87,7 @@ skins.formspec.main = function(name)
 	local selected = 1 -- select default
 	local formspec = "size[7,7]"
 		.. "bgcolor[#08080822;true]"
-		.. "label[.5,2;" .. S("Select Player Skin:") .. "]"
+		.. "label[.5,2;" .. F("Select Player Skin:") .. "]"
 		.. "textlist[.5,2.5;5.8,4;skins_set;"
 
 	for i = 1, #skins.list do
@@ -105,10 +105,10 @@ skins.formspec.main = function(name)
 
 	if meta then
 		if meta.name then
-			formspec = formspec .. "label[2,.5;" .. S("Name: ") .. meta.name .. "]"
+			formspec = formspec .. "label[2,.5;".. F("Name: @1", meta.name) .. "]"
 		end
 		if meta.author then
-			formspec = formspec .. "label[2,1;" .. S("Author: ") .. meta.author .. "]"
+			formspec = formspec .. "label[2,1;".. F("Author: @1", meta.author) .. "]"
 		end
 	end
 
@@ -201,7 +201,7 @@ minetest.register_chatcommand("setskin", {
 		skins.save()
 
 		minetest.chat_send_player(name,
-			 "** " .. user .. S("'s skin set to") .. " character_" .. skin .. ".png")
+			 "** " .. S("@1's skin set to", user) .. " character_" .. skin .. ".png")
 	end,
 })
 
@@ -212,7 +212,7 @@ minetest.register_chatcommand("skin", {
 		minetest.show_formspec(name,
 			"skins_set",
 			skins.formspec.main(name)
-			.."button_exit[0,.75;2,.5;;" .. S("Close") .. "]"
+			.."button_exit[0,.75;2,.5;;".. F("Close") .."]"
 		)
 	end,
 })
